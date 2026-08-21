@@ -1,0 +1,42 @@
+intro: >-
+  <span class="intro-greeting" aria-hidden="true">👋</span> Hi! I am
+  <strong class="intro-name">Xu Wang (王旭)</strong>. I received my bachelor's
+  degree from <span class="intro-school">Shandong University</span> and am
+  pursuing a master's degree at the School of Software,
+  <span class="intro-school">Zhejiang University</span>. I am supervised by
+  <a class="intro-advisor" href="https://zwq2018.github.io/" target="_blank"
+  rel="noopener noreferrer">Prof. Wenqi Zhang</a> and
+  <a class="intro-advisor" href="https://person.zju.edu.cn/zhangxuhong"
+  target="_blank" rel="noopener noreferrer">Prof. Xuhong Zhang</a>.
+  <span class="intro-research-line">I am interested in
+  <em>embodied intelligence</em>, <em>spatial intelligence</em>, and
+  <em>world models</em>.</span>
+
+education:
+  - period: "2026-2029"
+    institution: "Zhejiang University"
+    degree: "Master"
+    program: "Software Engineering"
+    logo: "/images/education/zhejiang-university.svg"
+  - period: "2022-2026"
+    institution: "Shandong University"
+    degree: "Bachelor"
+    program: "Software Engineering (Elite Class for Large-Scale Industrial Software and Artificial Intelligence)"
+    gpa: "GPA 4.34/5 (Rank 2%)"
+    logo: "/images/education/shandong-university.svg"
+
+honors:
+  - period: "2026.06"
+    title: "Outstanding Graduate of Shandong University"
+  - period: "2026.06"
+    title: "Outstanding Graduation Thesis (Design), Shandong University"
+    detail: "10/465"
+  - period: "2024.11"
+    title: "National First Place, China Intelligent Vehicle Future Challenge"
+    advisor: "Prof. Lu Bai"
+    advisor_url: "https://faculty.sdu.edu.cn/lubai/zh_CN/"
+  - period: "2024.10"
+    title: "National Scholarship"
+  - period: "2022-2023, 2023-2024"
+    title: "Excellent Student First-Class Scholarship"
+    detail: "Top 5%"

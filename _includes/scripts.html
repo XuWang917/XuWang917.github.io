@@ -1,0 +1,9 @@
+<script type="module" src="{{ base_path }}/assets/js/main.min.js"></script>
+<script defer src="{{ '/assets/js/academic-home.js' | relative_url }}"></script>
+{% if page.url == '/' or page.url == '/index.html' %}
+  <script defer src="{{ '/assets/js/page-views.js' | relative_url }}"></script>
+{% endif %}
+
+{% include analytics.html %}
+
+{% include comments-providers/scripts.html %}

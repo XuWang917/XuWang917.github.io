@@ -1,0 +1,73 @@
+{% include base_path %}
+{% assign paper = include.post %}
+{% assign publication_slug = paper.title | slugify %}
+{% assign abstract_id = "publication-abstract-" | append: publication_slug %}
+
+<article class="publication-row{% if paper.abstract or paper.excerpt %} publication-row--expandable{% endif %}"{% if paper.abstract or paper.excerpt %} data-publication-card tabindex="0" role="button" aria-expanded="false" aria-controls="{{ abstract_id }}"{% endif %} itemscope itemtype="https://schema.org/ScholarlyArticle">
+  <div class="publication-media">
+    {% if paper.video %}
+      <video muted loop playsinline preload="metadata" data-autoplay-on-view tabindex="0" aria-label="Overview video for {{ paper.title }}"{% if paper.poster %}{% if paper.poster contains "://" %} poster="{{ paper.poster }}"{% else %} poster="{{ paper.poster | prepend: base_path }}"{% endif %}{% endif %}>
+        {% if paper.video contains "://" %}
+          <source src="{{ paper.video }}"{% if paper.video_type %} type="{{ paper.video_type }}"{% endif %}>
+        {% else %}
+          <source src="{{ paper.video | prepend: base_path }}"{% if paper.video_type %} type="{{ paper.video_type }}"{% endif %}>
+        {% endif %}
+      </video>
+    {% elsif paper.image %}
+      {% if paper.image contains "://" %}
+        <img src="{{ paper.image }}" alt="Preview for {{ paper.title }}">
+      {% else %}
+        <img src="{{ paper.image | prepend: base_path }}" alt="Preview for {{ paper.title }}">
+      {% endif %}
+    {% else %}
+      <div class="publication-media--placeholder">
+        <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="publication-content">
+    <h3 itemprop="headline">
+      <a href="{{ base_path }}{{ paper.url }}">{{ paper.title }}</a>
+    </h3>
+
+    {% if paper.authors %}
+      <p class="publication-authors" itemprop="author">{{ paper.authors }}</p>
+    {% endif %}
+
+    <div class="publication-links">
+      {% if paper.paperurl %}<a href="{{ paper.paperurl }}"><i class="ai ai-arxiv" aria-hidden="true"></i><span class="publication-link-label">Paper</span></a>{% endif %}
+      {% if paper.projecturl %}<a href="{{ paper.projecturl }}"><i class="fa-solid fa-globe publication-link-icon--project" aria-hidden="true"></i><span class="publication-link-label">Project</span></a>{% endif %}
+      {% if paper.codeurl %}
+        <a class="publication-link--github" href="{{ paper.codeurl }}">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          <span class="publication-link-label">Code</span>
+          {% if paper.githubrepo %}
+            <span class="publication-star" data-github-stars="{{ paper.githubrepo }}" aria-label="{{ paper.githubstars | default: 0 }} GitHub stars">
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <span data-star-count>{{ paper.githubstars }}</span>
+            </span>
+          {% endif %}
+        </a>
+      {% endif %}
+      {% if paper.dataseturl %}<a href="{{ paper.dataseturl }}"><span class="publication-link-emoji" aria-hidden="true">🤗</span><span class="publication-link-label">Dataset</span></a>{% endif %}
+      {% if paper.mediaurl %}<a href="{{ paper.mediaurl }}"><img class="publication-link-logo--media" src="{{ '/images/publication-links/jiqizhixin.jpg' | relative_url }}" alt="" aria-hidden="true"><span class="publication-link-label publication-link-label--cjk">机器之心</span></a>{% endif %}
+      {% if paper.slidesurl %}<a href="{{ paper.slidesurl }}"><i class="fa-solid fa-display" aria-hidden="true"></i><span class="publication-link-label">Slides</span></a>{% endif %}
+    </div>
+  </div>
+
+  {% if paper.abstract or paper.excerpt %}
+    <div class="publication-details" id="{{ abstract_id }}" aria-hidden="true">
+      <div class="publication-details-inner">
+        <h4>Abstract</h4>
+        <div class="publication-abstract" itemprop="description">
+          {% if paper.abstract %}
+            {{ paper.abstract | markdownify }}
+          {% else %}
+            {{ paper.excerpt | markdownify }}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</article>
