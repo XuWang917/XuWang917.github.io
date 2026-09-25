@@ -1,0 +1,37 @@
+---
+layout: archive
+title: "Publications"
+permalink: /publications/
+author_profile: true
+---
+
+{% include base_path %}
+
+{% if site.author.googlescholar %}
+  <p class="publication-index-note">
+    Citation records are also available on
+    <a href="{{ site.author.googlescholar }}">Google Scholar</a>.
+  </p>
+{% endif %}
+
+{% assign publications = site.publications | sort: "date" | reverse %}
+{% if publications.size > 0 %}
+  <div class="publication-list">
+    {% for post in publications %}
+      {% include publication-row.html post=post %}
+    {% endfor %}
+  </div>
+{% else %}
+  <article class="publication-row publication-row--empty">
+    <div class="publication-media publication-media--placeholder">
+      <i class="fa-solid fa-file-video" aria-hidden="true"></i>
+    </div>
+    <div class="publication-content">
+      <h3>Publications are being prepared.</h3>
+      <p class="publication-summary">
+        Paper entries will include a media preview, authors, venue, links, and
+        a short description.
+      </p>
+    </div>
+  </article>
+{% endif %}
