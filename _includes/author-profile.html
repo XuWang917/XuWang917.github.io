@@ -1,0 +1,50 @@
+{% include base_path %}
+
+{% if page.author and site.data.authors[page.author] %}
+  {% assign author = site.data.authors[page.author] %}
+{% else %}
+  {% assign author = site.author %}
+{% endif %}
+
+<div class="profile" itemscope itemtype="https://schema.org/Person">
+  <div class="author__avatar">
+    {% if author.avatar contains "://" %}
+      <img src="{{ author.avatar }}" alt="{{ author.name }}" fetchpriority="high">
+    {% else %}
+      <img src="{{ author.avatar | prepend: "/images/" | prepend: base_path }}" alt="{{ author.name }}" fetchpriority="high">
+    {% endif %}
+  </div>
+
+  <div class="author__content">
+    <h2 class="author__name" itemprop="name">{{ author.name }}</h2>
+    {% if author.bio %}<p class="author__bio">{{ author.bio }}</p>{% endif %}
+    {% if author.email %}
+      <p class="author__email-text"><a href="mailto:{{ author.email }}">{{ author.email }}</a></p>
+    {% endif %}
+    {% if author.employer %}<p class="author__affiliation">{{ author.employer }}</p>{% endif %}
+    {% if author.location %}
+      <p class="author__location">
+        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+        {{ author.location }}
+      </p>
+    {% endif %}
+  </div>
+
+  <ul class="profile-links" aria-label="Profile links">
+    {% if author.email %}
+      <li><a href="mailto:{{ author.email }}"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Email</a></li>
+    {% endif %}
+    {% if author.github %}
+      <li><a href="https://github.com/{{ author.github }}"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</a></li>
+    {% endif %}
+    {% if author.googlescholar %}
+      <li><a href="{{ author.googlescholar }}"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>Google Scholar</a></li>
+    {% endif %}
+    {% if author.orcid %}
+      <li><a href="{{ author.orcid }}"><i class="ai ai-orcid" aria-hidden="true"></i>ORCID</a></li>
+    {% endif %}
+    {% if author.linkedin %}
+      <li><a href="https://www.linkedin.com/in/{{ author.linkedin }}"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>LinkedIn</a></li>
+    {% endif %}
+  </ul>
+</div>
