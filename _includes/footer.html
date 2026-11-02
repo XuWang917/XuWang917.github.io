@@ -1,0 +1,21 @@
+{% include base_path %}
+{% assign footer_updated = site.last_updated | default: site.time %}
+
+<div class="page__footer-copyright">
+  <span class="page__footer-copy">
+    &copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}.
+    Built with <a href="https://github.com/academicpages/academicpages.github.io">Academic Pages</a>.
+    Last updated {{ footer_updated | date: '%Y-%m-%d' }}.
+  </span>
+  {% if page.url == '/' or page.url == '/index.html' %}
+    <span
+      class="page__footer-counter"
+      data-page-view-counter
+      title="Page views"
+      hidden
+    >
+      <i class="fa-regular fa-eye" aria-hidden="true"></i>
+      <span class="page__footer-counter-value" aria-hidden="true"></span>
+    </span>
+  {% endif %}
+</div>
